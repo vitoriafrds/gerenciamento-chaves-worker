@@ -16,7 +16,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "CHAVE_ACESSO")
 public class ChaveAcessoEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

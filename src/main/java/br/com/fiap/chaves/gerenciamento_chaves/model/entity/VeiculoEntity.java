@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -46,6 +47,9 @@ public class VeiculoEntity {
 
     @Column(name = "QUILOMETRAGEM")
     private String quilometragem;
+
+    @OneToMany(mappedBy = "veiculo")
+    private List<ManutencaoEntity> manuntencoes;
 
     public VeiculoEntity(String idVeiculo) {
         this.id = UUID.fromString(idVeiculo);

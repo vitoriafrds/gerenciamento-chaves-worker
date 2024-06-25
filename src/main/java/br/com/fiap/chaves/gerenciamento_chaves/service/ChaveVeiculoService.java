@@ -18,11 +18,13 @@ public class ChaveVeiculoService {
         this.repository = repository;
     }
 
-    public void criarChave(ChaveRequest evento) {
+    public String criarChave(ChaveRequest evento) {
         ChaveAcessoEntity chave = new ChaveAcessoEntity();
         chave.setDataCriacao(LocalDate.now());
         chave.setVeiculo(new VeiculoEntity(evento.getIdVeiculo()));
 
-        repository.save(chave);
+        ChaveAcessoEntity chaveAcesso = repository.save(chave);
+
+        return chaveAcesso.getId().toString();
     }
 }

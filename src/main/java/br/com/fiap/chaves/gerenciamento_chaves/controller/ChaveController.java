@@ -1,6 +1,8 @@
 package br.com.fiap.chaves.gerenciamento_chaves.controller;
 
 import br.com.fiap.chaves.gerenciamento_chaves.model.ChaveRequest;
+import br.com.fiap.chaves.gerenciamento_chaves.model.response.ChaveResponse;
+import br.com.fiap.chaves.gerenciamento_chaves.model.response.DataResponse;
 import br.com.fiap.chaves.gerenciamento_chaves.service.ChaveVeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +23,11 @@ public class ChaveController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody ChaveRequest request) {
-        service.criarChave(request);
+    public ResponseEntity<DataResponse> create(@RequestBody ChaveRequest request) {
+        String chave = service.criarChave(request);
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(DataResponse.of(new ChaveResponse(chave)));
     }
 }
 
